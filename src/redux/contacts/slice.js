@@ -48,7 +48,7 @@ const handleDeletePending = (state, action) => {
   state.isDeleting = { status: true, id: action.meta.arg };
 };
 
-const contactsInitialState = {
+const initialState = {
   items: [],
   isLoading: false,
   error: null,
@@ -58,7 +58,7 @@ const contactsInitialState = {
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: contactsInitialState,
+  initialState,
   reducers: {
     sortAscName(state) {
       state.items = state.items.sort((first, second) =>

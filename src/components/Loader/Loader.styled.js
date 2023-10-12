@@ -5,8 +5,6 @@ export const StyledLoader = styled.div`
   border: 6px solid ${p => p.theme.colors.secondary};
   border-top: 6px solid ${p => p.theme.colors.bgc};
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
   animation: spin 2s linear infinite;
 
   @keyframes spin {

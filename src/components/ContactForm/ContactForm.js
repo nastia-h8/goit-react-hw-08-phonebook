@@ -3,7 +3,9 @@ import * as yup from 'yup';
 import toast from 'react-hot-toast';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectIsAdding } from 'redux/selectors';
+import { selectContacts, selectIsAdding } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operations';
+
 import { regex } from 'formRegex';
 import { checkContactName, checkContactNumber } from 'checkExistingContact';
 
@@ -17,7 +19,6 @@ import {
   Input,
   Message,
 } from './ContactForm.styled';
-import { addContact } from 'redux/operations';
 
 const Schema = yup.object().shape({
   name: yup

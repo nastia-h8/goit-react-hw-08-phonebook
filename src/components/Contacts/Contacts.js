@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchContacts } from 'redux/operations';
-import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
-import { sortAscName, sortDescName } from 'redux/contactsSlice';
+import { fetchContacts } from 'redux/contacts/operations';
+import {
+  selectContacts,
+  selectError,
+  selectIsLoading,
+} from 'redux/contacts/selectors';
+import { sortAscName, sortDescName } from 'redux/contacts/slice';
 
 import { ContactFilter } from 'components/ContactFilter/ContactFilter';
 import { ContactList } from 'components/ContactList/ContactList';
@@ -41,7 +45,7 @@ export function Contacts() {
         </Button>
       </ContactSort>
 
-      {isLoading && <Loader />}
+      {isLoading && <Loader size={20} />}
 
       {!contacts.length && !isLoading ? (
         <Message>No contacts yet</Message>
