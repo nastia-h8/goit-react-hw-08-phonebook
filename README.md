@@ -2,8 +2,7 @@
 
 Upd:
 
-- Removed the code responsible for storing and reading contacts from the local
-  storage, and added communication with the backend (`mockapi.io`) for storing
-  contacts
-- Used `createAsyncThunk` to declare asynchronous action generators and make
-  HTTP requests.
+- Added the ability to register, login, user updates and work with a private
+  collection of contacts
+- Used `JSON Web Token`
+- Styling
