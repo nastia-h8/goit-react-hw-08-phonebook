@@ -4,11 +4,8 @@ import toast from 'react-hot-toast';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectIsAdding } from 'redux/selectors';
-import { regex } from 'utils/regex';
-import {
-  checkContactName,
-  checkContactNumber,
-} from 'helpers/checkExistingContact';
+import { regex } from 'formRegex';
+import { checkContactName, checkContactNumber } from 'checkExistingContact';
 
 import { AiOutlineUser, AiOutlinePhone } from 'react-icons/ai';
 import {
