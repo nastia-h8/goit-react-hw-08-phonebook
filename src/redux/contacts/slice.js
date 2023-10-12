@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
+import { logOut } from 'redux/auth/operations';
 
 const STATUS = {
   PENDING: 'pending',
@@ -48,6 +49,12 @@ const handleDeletePending = (state, action) => {
   state.isDeleting = { status: true, id: action.meta.arg };
 };
 
+const handleLogOutFulfilled = state => {
+  state.items = [];
+  state.error = null;
+  state.isLoading = false;
+};
+
 const initialState = {
   items: [],
   isLoading: false,
@@ -80,6 +87,7 @@ const contactsSlice = createSlice({
       .addCase(addContact.pending, handleAddPending)
       .addCase(deleteContact.fulfilled, handleDeleteFulfilled)
       .addCase(deleteContact.pending, handleDeletePending)
+      .addCase(logOut.fulfilled, handleLogOutFulfilled)
       .addMatcher(isAnyOf(...selectOperation(REJECTED)), handleRejected)
       .addMatcher(isAnyOf(...selectOperation(FULFILLED)), handleFulfilled);
   },

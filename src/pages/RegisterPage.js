@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { register } from 'redux/auth/operations';
 
 export function RegisterPage() {
@@ -35,8 +36,12 @@ export function RegisterPage() {
           Password
           <input type="password" name="password" />
         </label>
-        <button type="submit">Sign up</button>
+        <button type="submit" style={{ margin: '0 auto' }}>
+          Sign up
+        </button>
       </form>
+      <p>Already have an account?</p>
+      <Link to="/register">Log in</Link>
     </div>
   );
 }

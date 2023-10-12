@@ -6,19 +6,20 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import { Button, Item, Name, NumberWrapper } from './ContactListItem.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export function ContactListItem({ id, number, name }) {
+export function ContactListItem(contact) {
   const dispatch = useDispatch();
   const isDeleting = useSelector(selectIsDeleting);
-  const isDeletingItem = isDeleting.status && isDeleting.id === id;
+  const isDeletingItem = isDeleting.status && isDeleting.id === contact.id;
 
   return (
     <Item>
-      <Name>{name}</Name>
+      <Name>{contact.name}</Name>
       <NumberWrapper>
         <span>Number: </span>
-        {number}
+        {contact.number}
       </NumberWrapper>
-      <Button type="button" onClick={() => dispatch(deleteContact(id))}>
+
+      <Button type="button" onClick={() => dispatch(deleteContact(contact.id))}>
         {isDeletingItem ? <Loader size={20} /> : <AiOutlineDelete size={20} />}
       </Button>
     </Item>

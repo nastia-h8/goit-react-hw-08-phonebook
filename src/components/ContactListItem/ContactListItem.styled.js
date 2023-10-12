@@ -21,7 +21,6 @@ export const NumberWrapper = styled.span`
 `;
 
 export const Button = styled.button`
-  margin: 0 auto;
   padding: ${p => p.theme.spacing(1)};
   position: absolute;
   right: ${p => p.theme.spacing(2)};

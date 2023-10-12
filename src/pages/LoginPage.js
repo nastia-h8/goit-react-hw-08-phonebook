@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
 
 export function LoginPage() {
@@ -28,8 +29,12 @@ export function LoginPage() {
           Password
           <input type="password" name="password" />
         </label>
-        <button type="submit">Log in</button>
+        <button type="submit" style={{ margin: '0 auto' }}>
+          Log in
+        </button>
       </form>
+      <p>Don't have an account yet?</p>
+      <Link to="/register">Sign Up</Link>
     </div>
   );
 }
