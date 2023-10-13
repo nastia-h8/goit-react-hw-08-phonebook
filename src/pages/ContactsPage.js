@@ -1,11 +1,11 @@
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Contacts } from 'components/Contacts/Contacts';
 
-export function ContactsPage() {
+export default function ContactsPage() {
   return (
-    <>
+    <div>
       <ContactForm />
       <Contacts />
-    </>
+    </div>
   );
 }
