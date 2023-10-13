@@ -20,7 +20,7 @@ import {
   Message,
 } from './ContactForm.styled';
 
-const Schema = yup.object().shape({
+const schema = yup.object().shape({
   name: yup
     .string()
     .min(3, 'Enter at least 3 characters')
@@ -67,7 +67,7 @@ export const ContactForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={Schema}
+      validationSchema={schema}
     >
       <FormField autoComplete="off">
         <Label>
