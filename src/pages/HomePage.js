@@ -1,3 +1,12 @@
+import { Helmet } from 'react-helmet';
+
 export default function HomePage() {
-  return <div>Hello, this is App for managing your contacts your contacts</div>;
+  return (
+    <div>
+      <Helmet>
+        <title>Phonebook</title>
+      </Helmet>
+      <p>Hello, this is App for managing your contacts your contacts</p>
+    </div>
+  );
 }
