@@ -1,12 +1,12 @@
 import { useAuth } from 'hooks/useAuth';
-import { Link } from 'react-router-dom';
+import { Container, StyledLink } from './Navigation.styled';
 
 export function Navigation() {
   const { isLoggedIn } = useAuth();
   return (
-    <div style={{ display: 'flex', gap: '10px' }}>
-      <Link to="/">Home</Link>
-      {isLoggedIn && <Link to="/contacts">My contacts</Link>}
-    </div>
+    <Container>
+      <StyledLink to="/">Home</StyledLink>
+      {isLoggedIn && <StyledLink to="/contacts">My contacts</StyledLink>}
+    </Container>
   );
 }

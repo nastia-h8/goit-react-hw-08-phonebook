@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Container, StyledLink } from './AuthNav.styled';
 
 export function AuthNav() {
   return (
-    <div style={{ display: 'flex', gap: '10px' }}>
-      <Link to="/register">Sign up</Link>
-      <Link to="/login">Log in</Link>
-    </div>
+    <Container>
+      <StyledLink to="/register">Sign up</StyledLink>
+      <StyledLink to="/login">Log in</StyledLink>
+    </Container>
   );
 }

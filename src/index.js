@@ -15,6 +15,7 @@ const theme = {
     light: '#ffffff',
     bgc: 'rgba(117, 117, 117, 0.4)',
     border: 'rgba(117, 117, 117, 0.2)',
+    secondaryBgc: 'rgb(240, 240, 240)',
   },
   radii: {
     sm: '4px',

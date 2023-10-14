@@ -1,6 +1,8 @@
+import { IoLogOutOutline } from 'react-icons/io5';
 import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
+import { Container, Button } from './UserMenu.styled';
 
 export function UserMenu() {
   const { user } = useAuth();
@@ -11,9 +13,11 @@ export function UserMenu() {
   };
 
   return (
-    <div style={{ display: 'flex', gap: '10px' }}>
+    <Container>
       <p>{`Hello, ${user.name}`}</p>
-      <button onClick={handleLogOut}>Logout</button>
-    </div>
+      <Button onClick={handleLogOut}>
+        <IoLogOutOutline size={20} />
+      </Button>
+    </Container>
   );
 }

@@ -1,16 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
-import { Link } from 'react-router-dom';
+import { Container, NavContainer, StyledLink } from './RegisterPage.styled';
 
 export default function RegisterPage() {
   return (
-    <div>
+    <Container>
       <Helmet>
         <title>Sign up</title>
       </Helmet>
       <RegisterForm />
-      <p>Already have an account?</p>
-      <Link to="/login">Log in</Link>
-    </div>
+      <NavContainer>
+        <b>Already have an account?</b>
+        <StyledLink to="/login">Log in</StyledLink>
+      </NavContainer>
+    </Container>
   );
 }

@@ -7,7 +7,6 @@ export const Item = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* flex-direction: column; */
   gap: ${p => p.theme.spacing(2)};
 
   border: 1px solid ${p => p.theme.colors.border};
@@ -36,11 +35,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  /* min-width: 60px; */
   padding: ${p => p.theme.spacing(1)};
-  /* position: absolute;
-  right: ${p => p.theme.spacing(2)};
-  bottom: ${p => p.theme.spacing(2)}; */
   display: flex;
   align-items: center;
   justify-content: center;

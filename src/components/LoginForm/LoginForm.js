@@ -1,7 +1,17 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import { logInSchema } from 'validation/schema';
+import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import {
+  Button,
+  FormField,
+  Input,
+  InputWrapper,
+  Label,
+  LabelName,
+  Message,
+} from './LoginForm.styled';
 
 export function LoginForm() {
   const dispatch = useDispatch();
@@ -15,21 +25,25 @@ export function LoginForm() {
       onSubmit={handleSubmit}
       validationSchema={logInSchema}
     >
-      <Form style={{ display: 'flex', flexDirection: 'column' }}>
-        <label>
-          Email
-          <Field type="email" name="email" />
-        </label>
-        <ErrorMessage name="email" component="p" />
-        <label>
-          Password
-          <Field type="password" name="password" />
-        </label>
-        <ErrorMessage name="password" component="p" />
-        <button type="submit" style={{ margin: '0 auto' }}>
-          Log in
-        </button>
-      </Form>
+      <FormField>
+        <Label>
+          <LabelName>Email</LabelName>
+          <InputWrapper>
+            <AiOutlineMail size={20} />
+            <Input type="email" name="email" />
+          </InputWrapper>
+        </Label>
+        <Message name="email" component="p" />
+        <Label>
+          <LabelName>Password</LabelName>
+          <InputWrapper>
+            <AiOutlineLock size={20} />
+            <Input type="password" name="password" />
+          </InputWrapper>
+        </Label>
+        <Message name="password" component="p" />
+        <Button type="submit">Log in</Button>
+      </FormField>
     </Formik>
   );
 }

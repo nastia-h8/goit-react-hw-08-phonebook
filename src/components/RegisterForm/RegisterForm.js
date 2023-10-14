@@ -1,7 +1,17 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
 import { registerSchema } from 'validation/schema';
+import {
+  Button,
+  FormField,
+  Input,
+  InputWrapper,
+  Label,
+  LabelName,
+  Message,
+} from './RegisterForm.styled';
+import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 
 export function RegisterForm() {
   const dispatch = useDispatch();
@@ -16,26 +26,33 @@ export function RegisterForm() {
       onSubmit={handleSubmit}
       validationSchema={registerSchema}
     >
-      <Form style={{ display: 'flex', flexDirection: 'column' }}>
-        <label>
-          Username
-          <Field type="text" name="name" />
-        </label>
-        <ErrorMessage name="name" component="p" />
-        <label>
-          Email
-          <Field type="email" name="email" />
-        </label>
-        <ErrorMessage name="email" component="p" />
-        <label>
-          Password
-          <Field type="password" name="password" />
-        </label>
-        <ErrorMessage name="password" component="p" />
-        <button type="submit" style={{ margin: '0 auto' }}>
-          Sign up
-        </button>
-      </Form>
+      <FormField>
+        <Label>
+          <LabelName>Name</LabelName>
+          <InputWrapper>
+            <AiOutlineUser size={20} />
+            <Input type="text" name="name" />
+          </InputWrapper>
+        </Label>
+        <Message name="name" component="p" />
+        <Label>
+          <LabelName>Email</LabelName>
+          <InputWrapper>
+            <AiOutlineMail size={20} />
+            <Input type="email" name="email" />
+          </InputWrapper>
+        </Label>
+        <Message name="email" component="p" />
+        <Label>
+          <LabelName>Password</LabelName>
+          <InputWrapper>
+            <AiOutlineLock size={20} />
+            <Input type="password" name="password" />
+          </InputWrapper>
+        </Label>
+        <Message name="password" component="p" />
+        <Button type="submit">Sign up</Button>
+      </FormField>
     </Formik>
   );
 }

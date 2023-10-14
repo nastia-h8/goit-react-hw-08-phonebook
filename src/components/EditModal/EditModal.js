@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Overlay, Button } from './EditModal.styled';
+import { Overlay, Button, Wrapper } from './EditModal.styled';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { EditForm } from 'components/EditForm/EditForm';
 
@@ -20,10 +20,12 @@ export function EditModal({ onModalClose, contact }) {
 
   return (
     <Overlay>
-      <EditForm contact={contact} onModalClose={onModalClose} />
-      <Button type="button" onClick={onModalClose}>
-        <IoCloseCircleOutline size={30} />
-      </Button>
+      <Wrapper>
+        <EditForm contact={contact} onModalClose={onModalClose} />
+        <Button type="button" onClick={onModalClose}>
+          <IoCloseCircleOutline size={30} />
+        </Button>
+      </Wrapper>
     </Overlay>
   );
 }

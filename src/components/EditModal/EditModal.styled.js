@@ -14,21 +14,25 @@ export const Overlay = styled.div`
   background-color: ${p => p.theme.colors.bgc};
 `;
 
+export const Wrapper = styled.div`
+  position: relative;
+`;
+
 export const Button = styled.button`
+  position: absolute;
+  padding: 0;
+  top: 8px;
+  right: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
   cursor: pointer;
   background-color: transparent;
   transition: all 250ms linear;
 
   &:hover,
   &:focus {
-    background-color: ${p => p.theme.colors.bgc};
-    color: ${p => p.theme.colors.light};
+    color: ${p => p.theme.colors.bgc};
   }
 `;
