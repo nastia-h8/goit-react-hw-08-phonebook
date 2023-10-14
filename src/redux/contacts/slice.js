@@ -20,6 +20,9 @@ const selectOperation = type => operationArr.map(operation => operation[type]);
 const handleRejected = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
+  state.isEditing = { status: false, id: '' };
+  state.isDeleting = { status: false, id: '' };
+  state.isAdding = false;
 };
 
 const handleFulfilled = state => {
@@ -27,6 +30,7 @@ const handleFulfilled = state => {
   state.error = null;
   state.isDeleting = { status: false, id: '' };
   state.isAdding = false;
+  state.isEditing = { status: false, id: '' };
 };
 
 const handleFetchPending = state => {
@@ -54,10 +58,15 @@ const handleDeletePending = (state, action) => {
   state.isDeleting = { status: true, id: action.meta.arg };
 };
 
+const handleEditPending = (state, action) => {
+  state.isEditing = { status: true, id: action.meta.arg.id };
+};
+
 const handleEditFulfilled = (state, { payload }) => {
   state.items = state.items.map(item =>
     item.id === payload.id ? payload : item
   );
+  state.isEditing = { status: false, id: '' };
   toast.success('You successfully changed this contact');
 };
 
@@ -73,6 +82,7 @@ const initialState = {
   error: null,
   isDeleting: { status: false, id: '' },
   isAdding: false,
+  isEditing: { status: false, id: '' },
 };
 
 const contactsSlice = createSlice({
@@ -99,6 +109,7 @@ const contactsSlice = createSlice({
       .addCase(addContact.pending, handleAddPending)
       .addCase(deleteContact.fulfilled, handleDeleteFulfilled)
       .addCase(deleteContact.pending, handleDeletePending)
+      .addCase(editContact.pending, handleEditPending)
       .addCase(editContact.fulfilled, handleEditFulfilled)
       .addCase(logOut.fulfilled, handleLogOutFulfilled)
       .addMatcher(isAnyOf(...selectOperation(REJECTED)), handleRejected)

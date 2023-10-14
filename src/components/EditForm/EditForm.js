@@ -1,9 +1,7 @@
 import { Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { editContact } from 'redux/contacts/operations';
-import { selectContacts } from 'redux/contacts/selectors';
 import { contactSchema } from 'validation/schema';
-import { checkExistingName } from 'checkExistingContact';
 import {
   Button,
   FormField,
@@ -17,16 +15,12 @@ import { AiOutlineUser, AiOutlinePhone } from 'react-icons/ai';
 
 export function EditForm({ contact, onModalClose }) {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
 
   const handleSubmit = (editedContact, { resetForm }) => {
-    const isNameExist = checkExistingName(contacts, editedContact);
-    if (!isNameExist) {
-      const editData = { id: contact.id, ...editedContact };
-      dispatch(editContact(editData));
-      resetForm();
-      onModalClose();
-    }
+    const editData = { id: contact.id, ...editedContact };
+    dispatch(editContact(editData));
+    resetForm();
+    onModalClose();
   };
   return (
     <Formik

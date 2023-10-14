@@ -6,6 +6,7 @@ export const selectContacts = state => state.contacts.items;
 export const selectIsLoading = state => state.contacts.isLoading;
 export const selectIsDeleting = state => state.contacts.isDeleting;
 export const selectIsAdding = state => state.contacts.isAdding;
+export const selectIsEditing = state => state.contacts.isEditing;
 
 export const selectError = state => state.contacts.error;
 

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
-import { selectIsDeleting } from 'redux/contacts/selectors';
+import { selectIsDeleting, selectIsEditing } from 'redux/contacts/selectors';
 
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import {
@@ -15,10 +15,12 @@ import { useState } from 'react';
 import { EditModal } from 'components/EditModal/EditModal';
 
 export function ContactListItem(contact) {
+  const isEditing = useSelector(selectIsEditing);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const isDeleting = useSelector(selectIsDeleting);
   const isDeletingItem = isDeleting.status && isDeleting.id === contact.id;
+  const isEditingItem = isEditing.status && isEditing.id === contact.id;
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -37,7 +39,7 @@ export function ContactListItem(contact) {
         </InfoWrapper>
         <ButtonWrapper>
           <Button type="button" onClick={handleModalOpen}>
-            {<AiOutlineEdit size={20} />}
+            {isEditingItem ? <Loader size={20} /> : <AiOutlineEdit size={20} />}
           </Button>
           <Button
             type="button"
