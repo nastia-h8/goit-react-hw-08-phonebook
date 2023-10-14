@@ -18,6 +18,7 @@ import {
   Message,
 } from './ContactForm.styled';
 import { contactSchema } from 'validation/schema';
+import { Loader } from 'components/Loader/Loader';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,9 @@ export const ContactForm = () => {
           </Label>
           <Message name="number" component="p" />
 
-          <Button type="submit">{isAdding ? 'Adding...' : 'Add'}</Button>
+          <Button type="submit">
+            {isAdding ? <Loader size={20} /> : 'Add'}
+          </Button>
         </FormField>
       </Formik>
     </Container>

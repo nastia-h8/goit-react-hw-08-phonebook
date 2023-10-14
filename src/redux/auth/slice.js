@@ -9,22 +9,42 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
-  isLoading: false,
+  isRegister: false,
+  isLoggingIn: false,
   error: null,
+};
+
+const handleRegisterPending = state => {
+  state.isRegister = true;
 };
 
 const handleRegisterFulfilled = (state, { payload }) => {
   state.user = payload.user;
   state.token = payload.token;
   state.isLoggedIn = true;
-  state.isLoading = false;
+  state.isRegister = false;
+  state.error = null;
+};
+
+const handleRegisterRejected = (state, { payload }) => {
+  state.isRegister = false;
+  state.error = payload;
+};
+
+const handleLogInPending = state => {
+  state.isLoggingIn = true;
 };
 
 const handleLogInFulfilled = (state, { payload }) => {
   state.user = payload.user;
   state.token = payload.token;
   state.isLoggedIn = true;
-  state.isLoading = false;
+  state.isLoggingIn = false;
+};
+
+const handleLogInRejected = (state, { payload }) => {
+  state.isLoggingIn = false;
+  state.error = payload;
 };
 
 const handleLogOutFulfilled = state => {
@@ -32,6 +52,10 @@ const handleLogOutFulfilled = state => {
   state.token = null;
   state.isLoggedIn = false;
   state.isLoading = false;
+};
+
+const handleLogOutRejected = (state, { payload }) => {
+  state.error = payload;
 };
 
 const handleRefreshUserPending = state => {
@@ -54,9 +78,14 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
+      .addCase(register.pending, handleRegisterPending)
       .addCase(register.fulfilled, handleRegisterFulfilled)
+      .addCase(register.rejected, handleRegisterRejected)
+      .addCase(logIn.pending, handleLogInPending)
       .addCase(logIn.fulfilled, handleLogInFulfilled)
+      .addCase(logIn.rejected, handleLogInRejected)
       .addCase(logOut.fulfilled, handleLogOutFulfilled)
+      .addCase(logOut.rejected, handleLogOutRejected)
       .addCase(refreshUser.pending, handleRefreshUserPending)
       .addCase(refreshUser.fulfilled, handleRefreshUserFulfilled)
       .addCase(refreshUser.rejected, handleRefreshUserRejected);

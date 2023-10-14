@@ -1,5 +1,6 @@
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
 import { register } from 'redux/auth/operations';
 import { registerSchema } from 'validation/schema';
 import {
@@ -12,8 +13,10 @@ import {
   Message,
 } from './RegisterForm.styled';
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import { Loader } from 'components/Loader/Loader';
 
 export function RegisterForm() {
+  const { isRegister } = useAuth();
   const dispatch = useDispatch();
 
   const handleSubmit = (userData, { resetForm }) => {
@@ -51,7 +54,9 @@ export function RegisterForm() {
           </InputWrapper>
         </Label>
         <Message name="password" component="p" />
-        <Button type="submit">Sign up</Button>
+        <Button type="submit">
+          {isRegister ? <Loader size={18} /> : 'Sign up'}
+        </Button>
       </FormField>
     </Formik>
   );

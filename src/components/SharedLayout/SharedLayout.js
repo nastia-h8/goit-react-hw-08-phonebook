@@ -4,8 +4,8 @@ import { Toaster } from 'react-hot-toast';
 
 import { AppBar } from 'components/AppBar/AppBar';
 import { GlobalStyle } from 'components/GlobalStyles';
-import { Loader } from 'components/Loader/Loader';
 import { Container } from './SharedLayout.styled';
+import { FallbackLoader } from 'components/FallbackLoader/FallbackLoader';
 
 export function SharedLayout() {
   return (
@@ -13,7 +13,7 @@ export function SharedLayout() {
       <AppBar />
       <main>
         <Container>
-          <Suspense fallback={<Loader size={40} />}>
+          <Suspense fallback={<FallbackLoader size={40} />}>
             <Outlet />
           </Suspense>
         </Container>

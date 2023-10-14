@@ -12,9 +12,13 @@ import {
   LabelName,
   Message,
 } from './LoginForm.styled';
+import { useAuth } from 'hooks/useAuth';
+import { Loader } from 'components/Loader/Loader';
 
 export function LoginForm() {
+  const { isLoggingIn } = useAuth();
   const dispatch = useDispatch();
+
   const handleSubmit = (userData, { resetForm }) => {
     dispatch(logIn(userData));
     resetForm();
@@ -42,7 +46,9 @@ export function LoginForm() {
           </InputWrapper>
         </Label>
         <Message name="password" component="p" />
-        <Button type="submit">Log in</Button>
+        <Button type="submit">
+          {isLoggingIn ? <Loader size={18} /> : 'Log in'}
+        </Button>
       </FormField>
     </Formik>
   );

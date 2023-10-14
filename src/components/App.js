@@ -7,7 +7,7 @@ import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks/useAuth';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
-import { Loader } from './Loader/Loader';
+import { FallbackLoader } from './FallbackLoader/FallbackLoader';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
@@ -23,7 +23,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <Loader size={40} />
+    <FallbackLoader size={40} />
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
