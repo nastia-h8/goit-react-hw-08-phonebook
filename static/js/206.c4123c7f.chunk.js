@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[206],{1206:function(e,t,n){n.r(t),n.d(t,{default:function(){return o}});var r=n(6907),c=n(184);function o(){return(0,c.jsxs)("div",{children:[(0,c.jsx)(r.ql,{children:(0,c.jsx)("title",{children:"Phonebook"})}),(0,c.jsx)("p",{children:"Hello, this is App for managing your contacts your contacts"})]})}}}]);
-//# sourceMappingURL=206.c4123c7f.chunk.js.map
