@@ -12,11 +12,21 @@ import {
   Message,
 } from './EditForm.styled';
 import { AiOutlineUser, AiOutlinePhone } from 'react-icons/ai';
+import toast from 'react-hot-toast';
 
 export function EditForm({ contact, onModalClose }) {
   const dispatch = useDispatch();
 
   const handleSubmit = (editedContact, { resetForm }) => {
+    const isNotChanged =
+      editedContact.name === contact.name &&
+      editedContact.number === contact.number;
+
+    if (isNotChanged) {
+      toast.error('Please, change something...');
+      return;
+    }
+
     const editData = { id: contact.id, ...editedContact };
     dispatch(editContact(editData));
     resetForm();

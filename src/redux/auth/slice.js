@@ -66,6 +66,7 @@ const handleRefreshUserFulfilled = (state, { payload }) => {
   state.user = payload;
   state.isLoggedIn = true;
   state.isRefreshing = false;
+  state.error = null;
 };
 
 const handleRefreshUserRejected = (state, { payload }) => {
