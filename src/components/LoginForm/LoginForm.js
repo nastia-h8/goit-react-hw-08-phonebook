@@ -1,16 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
-
-const initialValues = {
-  email: '',
-  password: '',
-};
-const schema = yup.object().shape({
-  email: yup.string().email('Enter a valid email').trim().required('Required'),
-  password: yup.string().trim().required('Required'),
-});
+import { logInSchema } from 'validation/schema';
 
 export function LoginForm() {
   const dispatch = useDispatch();
@@ -20,9 +11,9 @@ export function LoginForm() {
   };
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{ email: '', password: '' }}
       onSubmit={handleSubmit}
-      validationSchema={schema}
+      validationSchema={logInSchema}
     >
       <Form style={{ display: 'flex', flexDirection: 'column' }}>
         <label>

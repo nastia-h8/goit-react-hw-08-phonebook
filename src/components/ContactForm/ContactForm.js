@@ -1,13 +1,9 @@
 import { Formik } from 'formik';
-import * as yup from 'yup';
-import toast from 'react-hot-toast';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectIsAdding } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operations';
 
-import { regex } from 'formRegex';
-import { checkContactName, checkContactNumber } from 'checkExistingContact';
+import { checkExistingName, checkExistingNumber } from 'checkExistingContact';
 
 import { AiOutlineUser, AiOutlinePhone } from 'react-icons/ai';
 import {
@@ -19,28 +15,7 @@ import {
   Input,
   Message,
 } from './ContactForm.styled';
-
-const schema = yup.object().shape({
-  name: yup
-    .string()
-    .min(3, 'Enter at least 3 characters')
-    .max(25, 'Too Long')
-    .trim()
-    .matches(regex.name.regex, regex.name.errorMessage)
-    .required('Required'),
-  number: yup
-    .string()
-    .min(6, 'Enter at least 6 characters')
-    .max(20, 'Too Long')
-    .trim()
-    .matches(regex.number.regex, regex.number.errorMessage)
-    .required('Required'),
-});
-
-const initialValues = {
-  name: '',
-  number: '',
-};
+import { contactSchema } from 'validation/schema';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -48,16 +23,10 @@ export const ContactForm = () => {
   const isAdding = useSelector(selectIsAdding);
 
   const handleSubmit = (contact, { resetForm }) => {
-    const isNameInContactList = checkContactName(contacts, contact.name);
-    const isNumberInContactList = checkContactNumber(contacts, contact.number);
+    const isNameExist = checkExistingName(contacts, contact);
+    const isNumberExist = checkExistingNumber(contacts, contact);
 
-    if (isNameInContactList) {
-      toast.error(`${contact.name} is already in contacts`);
-    } else if (isNumberInContactList) {
-      toast.error(
-        `This number is already saved in contacts as ${isNumberInContactList.name}`
-      );
-    } else {
+    if (!isNameExist && !isNumberExist) {
       dispatch(addContact(contact));
       resetForm();
     }
@@ -65,9 +34,9 @@ export const ContactForm = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{ name: '', number: '' }}
       onSubmit={handleSubmit}
-      validationSchema={schema}
+      validationSchema={contactSchema}
     >
       <FormField autoComplete="off">
         <Label>

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { LoginForm } from 'components/LoginForm/LoginForm';
 import { Link } from 'react-router-dom';
 

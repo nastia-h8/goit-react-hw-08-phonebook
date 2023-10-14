@@ -9,6 +9,44 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  isLoading: false,
+  error: null,
+};
+
+const handleRegisterFulfilled = (state, { payload }) => {
+  state.user = payload.user;
+  state.token = payload.token;
+  state.isLoggedIn = true;
+  state.isLoading = false;
+};
+
+const handleLogInFulfilled = (state, { payload }) => {
+  state.user = payload.user;
+  state.token = payload.token;
+  state.isLoggedIn = true;
+  state.isLoading = false;
+};
+
+const handleLogOutFulfilled = state => {
+  state.user = { name: null, email: null };
+  state.token = null;
+  state.isLoggedIn = false;
+  state.isLoading = false;
+};
+
+const handleRefreshUserPending = state => {
+  state.isRefreshing = true;
+};
+
+const handleRefreshUserFulfilled = (state, { payload }) => {
+  state.user = payload;
+  state.isLoggedIn = true;
+  state.isRefreshing = false;
+};
+
+const handleRefreshUserRejected = (state, { payload }) => {
+  state.isRefreshing = false;
+  state.error = payload;
 };
 
 const authSlice = createSlice({
@@ -16,38 +54,12 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(register.pending, () => {})
-      .addCase(register.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(register.rejected, () => {})
-      .addCase(logIn.pending, () => {})
-      .addCase(logIn.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(logIn.rejected, () => {})
-      .addCase(logOut.pending, () => {})
-      .addCase(logOut.fulfilled, state => {
-        state.user = { name: null, email: null };
-        state.token = null;
-        state.isLoggedIn = false;
-      })
-      .addCase(logOut.rejected, () => {})
-      .addCase(refreshUser.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(refreshUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(refreshUser.rejected, state => {
-        state.isRefreshing = false;
-      });
+      .addCase(register.fulfilled, handleRegisterFulfilled)
+      .addCase(logIn.fulfilled, handleLogInFulfilled)
+      .addCase(logOut.fulfilled, handleLogOutFulfilled)
+      .addCase(refreshUser.pending, handleRefreshUserPending)
+      .addCase(refreshUser.fulfilled, handleRefreshUserFulfilled)
+      .addCase(refreshUser.rejected, handleRefreshUserRejected);
   },
 });
 

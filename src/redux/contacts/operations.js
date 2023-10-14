@@ -27,17 +27,18 @@ export const addContact = createAsyncThunk(
   }
 );
 
-// export const editContact = createAsyncThunk(
-//   'contacts/editContact',
-//   async (contact, thunkAPI) => {
-//     try {
-//       const { data } = await axios.patch(`/contacts/${contact.id}`);
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async (contact, thunkAPI) => {
+    try {
+      const { id, name, number } = contact;
+      const { data } = await axios.patch(`/contacts/${id}`, { name, number });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',

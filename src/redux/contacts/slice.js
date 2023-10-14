@@ -1,6 +1,11 @@
 import toast from 'react-hot-toast';
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './operations';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  editContact,
+} from './operations';
 import { logOut } from 'redux/auth/operations';
 
 const STATUS = {
@@ -49,6 +54,13 @@ const handleDeletePending = (state, action) => {
   state.isDeleting = { status: true, id: action.meta.arg };
 };
 
+const handleEditFulfilled = (state, { payload }) => {
+  state.items = state.items.map(item =>
+    item.id === payload.id ? payload : item
+  );
+  toast.success('You successfully changed this contact');
+};
+
 const handleLogOutFulfilled = state => {
   state.items = [];
   state.error = null;
@@ -87,6 +99,7 @@ const contactsSlice = createSlice({
       .addCase(addContact.pending, handleAddPending)
       .addCase(deleteContact.fulfilled, handleDeleteFulfilled)
       .addCase(deleteContact.pending, handleDeletePending)
+      .addCase(editContact.fulfilled, handleEditFulfilled)
       .addCase(logOut.fulfilled, handleLogOutFulfilled)
       .addMatcher(isAnyOf(...selectOperation(REJECTED)), handleRejected)
       .addMatcher(isAnyOf(...selectOperation(FULFILLED)), handleFulfilled);
