@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Container } from './HomePage.styled';
 import { useAuth } from 'hooks/useAuth';
-import homeImg from '../../images/home.jpg';
+import homeImg from 'images/home.jpg';
 
 export default function HomePage() {
   const { isLoggedIn } = useAuth();

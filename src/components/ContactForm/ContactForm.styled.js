@@ -1,6 +1,23 @@
 import styled from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 
+export const Container = styled.div`
+  margin: 0 auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: ${p => p.theme.spacing(3)};
+  padding: ${p => p.theme.spacing(3)};
+  border-radius: ${p => p.theme.radii.sm};
+  box-shadow: ${p => p.theme.shadow};
+`;
+
+export const Title = styled.h2`
+  text-align: center;
+`;
+
 export const FormField = styled(Form)`
   max-width: 400px;
   margin: 0 auto;
@@ -45,7 +62,7 @@ export const Message = styled(ErrorMessage)`
 
 export const Button = styled.button`
   margin: 0 auto;
-  min-width: 140px;
+  min-width: 100px;
   padding: ${p => p.theme.spacing(3)};
   display: flex;
   align-items: center;

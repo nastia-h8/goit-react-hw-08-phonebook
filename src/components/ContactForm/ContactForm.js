@@ -7,6 +7,8 @@ import { checkExistingName, checkExistingNumber } from 'checkExistingContact';
 
 import { AiOutlineUser, AiOutlinePhone } from 'react-icons/ai';
 import {
+  Container,
+  Title,
   FormField,
   Label,
   LabelName,
@@ -33,32 +35,35 @@ export const ContactForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={{ name: '', number: '' }}
-      onSubmit={handleSubmit}
-      validationSchema={contactSchema}
-    >
-      <FormField autoComplete="off">
-        <Label>
-          <LabelName>Name</LabelName>
-          <InputWrapper>
-            <AiOutlineUser size={20} />
-            <Input type="text" name="name" />
-          </InputWrapper>
-        </Label>
-        <Message name="name" component="p" />
+    <Container>
+      <Title>Add new contact</Title>
+      <Formik
+        initialValues={{ name: '', number: '' }}
+        onSubmit={handleSubmit}
+        validationSchema={contactSchema}
+      >
+        <FormField autoComplete="off">
+          <Label>
+            <LabelName>Name</LabelName>
+            <InputWrapper>
+              <AiOutlineUser size={20} />
+              <Input type="text" name="name" />
+            </InputWrapper>
+          </Label>
+          <Message name="name" component="p" />
 
-        <Label>
-          <LabelName>Number</LabelName>
-          <InputWrapper>
-            <AiOutlinePhone size={20} />
-            <Input type="tel" name="number" />
-          </InputWrapper>
-        </Label>
-        <Message name="number" component="p" />
+          <Label>
+            <LabelName>Number</LabelName>
+            <InputWrapper>
+              <AiOutlinePhone size={20} />
+              <Input type="tel" name="number" />
+            </InputWrapper>
+          </Label>
+          <Message name="number" component="p" />
 
-        <Button type="submit">{isAdding ? 'Adding...' : 'Add contact'}</Button>
-      </FormField>
-    </Formik>
+          <Button type="submit">{isAdding ? 'Adding...' : 'Add'}</Button>
+        </FormField>
+      </Formik>
+    </Container>
   );
 };

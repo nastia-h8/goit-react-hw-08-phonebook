@@ -45,7 +45,7 @@ export const Message = styled(ErrorMessage)`
 
 export const Button = styled.button`
   margin: 0 auto;
-  min-width: 140px;
+  min-width: 100px;
   padding: ${p => p.theme.spacing(3)};
   display: flex;
   align-items: center;
