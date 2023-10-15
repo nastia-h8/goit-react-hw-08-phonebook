@@ -15,12 +15,12 @@ const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 
 export const App = () => {
-  const { isRefreshing, token } = useAuth();
+  const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (token) dispatch(refreshUser());
-  }, [token, dispatch]);
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return isRefreshing ? (
     <FallbackLoader size={40} />
