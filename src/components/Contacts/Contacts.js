@@ -7,18 +7,13 @@ import {
   selectError,
   selectIsLoading,
 } from 'redux/contacts/selectors';
-import { sortAscName, sortDescName } from 'redux/contacts/slice';
 
-import { ContactFilter } from 'components/ContactFilter/ContactFilter';
-import { ContactList } from 'components/ContactList/ContactList';
-import { Message } from 'components/Message/Message';
-import { Loader } from 'components/Loader/Loader';
+import { ContactFilter } from 'components/Contacts/ContactFilter';
+import { ContactList } from 'components/Contacts/ContactList';
+import { SortingBar } from 'components/SortingBar';
+import { Loader } from 'components/Loader';
 
-import { Button, Title, ContactSort } from './Contacts.styled';
-import {
-  AiOutlineSortAscending,
-  AiOutlineSortDescending,
-} from 'react-icons/ai';
+import { Typography } from '@mui/material';
 
 export function Contacts() {
   const dispatch = useDispatch();
@@ -33,26 +28,19 @@ export function Contacts() {
 
   return (
     <>
-      <Title>Contacts</Title>
       <ContactFilter />
-      <ContactSort>
-        Sort by name
-        <Button onClick={() => dispatch(sortAscName())}>
-          <AiOutlineSortAscending size={20} />
-        </Button>
-        <Button onClick={() => dispatch(sortDescName())}>
-          <AiOutlineSortDescending size={20} />
-        </Button>
-      </ContactSort>
-
-      {isLoading && <Loader size={20} />}
+      <SortingBar />
 
       {!contacts.length && !isLoading ? (
-        <Message>No contacts yet</Message>
+        <Typography variant="subtitle2" align="center">
+          No contacts yet
+        </Typography>
       ) : (
         <ContactList />
       )}
-      {error && <p>{error}</p>}
+
+      {isLoading && <Loader />}
+      {error && <Typography variant="subtitle2">{error}</Typography>}
     </>
   );
 }

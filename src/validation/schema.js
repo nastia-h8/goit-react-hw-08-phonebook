@@ -20,7 +20,11 @@ export const contactSchema = yup.object().shape({
 
 export const logInSchema = yup.object().shape({
   email: yup.string().email('Enter a valid email').trim().required('Required'),
-  password: yup.string().trim().required('Required'),
+  password: yup
+    .string()
+    .min(7, 'Password should be of minimum 7 characters length')
+    .trim()
+    .required('Required'),
 });
 
 export const registerSchema = yup.object().shape({
@@ -33,7 +37,7 @@ export const registerSchema = yup.object().shape({
   email: yup.string().email('Enter a valid email').trim().required('Required'),
   password: yup
     .string()
-    .min(7, 'Enter at least 7 characters')
+    .min(7, 'Password should be of minimum 7 characters length')
     .trim()
     .required('Required'),
 });
