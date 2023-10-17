@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 
 export default function LoginPage() {
   return (
-    <div>
+    <>
       <Helmet>
         <title>Log in</title>
       </Helmet>
@@ -31,6 +31,6 @@ export default function LoginPage() {
           Sign Up
         </Button>
       </Stack>
-    </div>
+    </>
   );
 }

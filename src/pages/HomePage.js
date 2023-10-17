@@ -21,8 +21,10 @@ export default function HomePage() {
           justifyContent: 'center',
         }}
       >
-        <Typography variant="h2">PhoneBook</Typography>
-        <Typography variant="subtitle1">
+        <Typography variant="h1" sx={{ fontSize: '3.75rem' }}>
+          PhoneBook
+        </Typography>
+        <Typography component="p" variant="subtitle1">
           This App keeps track of your contacts with ease! It allows you to add,
           delete and edit contacts quickly and easily. Stay in touch with the
           people you care about!

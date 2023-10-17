@@ -11,11 +11,9 @@ export function SharedLayout() {
     <>
       <PageAppBar />
       <main>
-        <div>
-          <Suspense fallback={<FallbackLoader size={40} />}>
-            <Outlet />
-          </Suspense>
-        </div>
+        <Suspense fallback={<FallbackLoader size={40} />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Toaster toastOptions={{ duration: 3000 }} />
       <CssBaseline />

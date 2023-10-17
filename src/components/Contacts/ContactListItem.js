@@ -35,15 +35,7 @@ export function ContactListItem(contact) {
   };
 
   return (
-    <ListItem
-      sx={{
-        pl: '0',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <ListItem>
       <Card
         sx={{
           minWidth: 400,

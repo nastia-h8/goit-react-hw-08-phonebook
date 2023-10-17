@@ -33,14 +33,7 @@ export function EditForm({ contact, onModalClose }) {
     onSubmit: handleSubmit,
   });
   return (
-    <Box
-      marginTop={4}
-      component="form"
-      onSubmit={formik.handleSubmit}
-      sx={{
-        '& .MuiTextField-root': { width: '40ch' },
-      }}
-    >
+    <Box marginTop={4} component="form" onSubmit={formik.handleSubmit}>
       <Stack
         direction="column"
         justifyContent="space-between"

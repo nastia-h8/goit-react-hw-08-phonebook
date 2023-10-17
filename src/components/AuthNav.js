@@ -10,6 +10,7 @@ export function AuthNav() {
       justifyContent="space-between"
       alignItems="center"
       spacing={2}
+      sx={{ ml: '0' }}
     >
       <Button
         sx={{ color: 'white' }}

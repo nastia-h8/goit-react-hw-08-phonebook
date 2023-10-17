@@ -14,7 +14,16 @@ export function ContactList() {
   return !visibleContacts.length && !isLoading ? (
     <Typography variant="subtitle2">No contacts found</Typography>
   ) : (
-    <List>
+    <List
+      sx={{
+        p: '0',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '10px',
+      }}
+    >
       {visibleContacts.map(contact => (
         <ContactListItem key={contact.id} {...contact} />
       ))}

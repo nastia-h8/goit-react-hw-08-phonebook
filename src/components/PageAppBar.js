@@ -17,7 +17,6 @@ export function PageAppBar() {
           direction="row"
           justifyContent="space-between"
           alignItems="center"
-          spacing={3}
           minHeight={64}
         >
           <Navigation />
