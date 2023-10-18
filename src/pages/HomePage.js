@@ -34,14 +34,14 @@ export default function HomePage() {
             Sign up or Log In to discover this service!
           </Typography>
         )}
-
         <Box
           sx={{
-            margin: '0 auto',
             backgroundImage: `url(${homeImg})`,
-            backgroundSize: 'cover',
-            width: '600px',
-            height: '400px',
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            width: '100%',
+            height: '300px',
+            backgroundRepeat: 'no-repeat',
           }}
         ></Box>
       </Container>
